@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// PUT THIS FILE IN THE "EDITOR" FOLDER AT THE ROOT OF YOUR UNITY PROJECT
 [InitializeOnLoad]
 public class customHierarchy : MonoBehaviour
 {
