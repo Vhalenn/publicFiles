@@ -16,8 +16,6 @@ public class customHierarchy : MonoBehaviour
 
     private static void HandleHierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
     {
-        //Color backgroundColor = new Color(0.22f, 0.22f, 0.22f);
-        //Color textColor = new Color(0.9f, 0.9f, 0.9f);
 
         var obj = EditorUtility.InstanceIDToObject(instanceID);
         if(obj != null)
@@ -25,12 +23,13 @@ public class customHierarchy : MonoBehaviour
             Color backgroundColor = Color.white;
             Color textColor = Color.white;
             Texture2D texture = null;
-
+            
+            //ADD CONDITIONS HERE TO COLOR MORE OBJECTS
+            // YOU CAN COLOR FOLLOWING NAME, TAG...
             if (obj.name == "Player")
             {
                 backgroundColor = new Color(0.2f, 0.6f, 0.1f);
                 textColor = new Color(0.9f, 0.9f, 0.9f);
-                //texture = Resources.Load("myTexture") as Texture2D;
             }
             else if(obj.name == "Canvas")
             {
