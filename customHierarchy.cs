@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
-// PUT THIS FILE IN THE "EDITOR" FOLDER AT THE ROOT OF YOUR UNITY PROJECT
-[InitializeOnLoad]
+/// <summary> Sets a background color for this game object in the Unity Hierarchy window </summary>
+[UnityEditor.InitializeOnLoad]
+#endif
 public class customHierarchy
 {
 
@@ -19,12 +21,12 @@ public class customHierarchy
     {
 
         var obj = EditorUtility.InstanceIDToObject(instanceID);
-        if(obj != null)
+        if (obj != null)
         {
             Color backgroundColor = Color.white;
             Color textColor = Color.white;
             Texture2D texture = null;
-            
+
             //ADD CONDITIONS HERE TO COLOR MORE OBJECTS
             // YOU CAN COLOR FOLLOWING NAME, TAG...
             if (obj.name == "Player")
@@ -32,9 +34,15 @@ public class customHierarchy
                 backgroundColor = new Color(0.2f, 0.6f, 0.1f);
                 textColor = new Color(0.9f, 0.9f, 0.9f);
             }
-            else if(obj.name == "Canvas")
+            else if((obj as GameObject).GetComponent<Canvas>())
             {
                 backgroundColor = new Color(0.7f, 0.45f, 0.0f);
+                textColor = new Color(0.9f, 0.9f, 0.9f);
+            }
+            else if ((obj as GameObject).GetComponent<ColorInHierarchy>())
+            {
+                // CREATE A C# SCRIPT "ColorInHierarchy" with a public color variable
+                backgroundColor = (obj as GameObject).GetComponent<ColorInHierarchy>().color;
                 textColor = new Color(0.9f, 0.9f, 0.9f);
             }
 
@@ -51,7 +59,7 @@ public class customHierarchy
                 }
                 );
 
-                if(texture!= null)
+                if (texture != null)
                     EditorGUI.DrawPreviewTexture(new Rect(selectionRect.position, new Vector2(selectionRect.height, selectionRect.height)), texture);
             }
         }
