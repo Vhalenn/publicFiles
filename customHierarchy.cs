@@ -5,7 +5,7 @@ using UnityEditor;
 
 // PUT THIS FILE IN THE "EDITOR" FOLDER AT THE ROOT OF YOUR UNITY PROJECT
 [InitializeOnLoad]
-public class customHierarchy : MonoBehaviour
+public class customHierarchy
 {
 
     private static Vector2 offset = new Vector2(20, 1);
