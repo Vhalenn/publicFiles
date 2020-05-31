@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class animal_behaviour : MonoBehaviour
 {
-    private Vector3 startPos;
-
     private Rigidbody rb;
     public bool forward, rotate;
     public float speed, actuaFreq, rayDist;
@@ -15,19 +13,11 @@ public class animal_behaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        startPos = transform.position;
-        transform.rotation = Quaternion.Euler(0, Random.value * 360, 0);
+        transform.rotation = Quaternion.Euler(0, Random.value * 360, 0); // Randomize rotation at start
     }
 
     void FixedUpdate()
     {
-        if(adventureManager.editionMode)
-        {
-            transform.position = startPos;
-            return;
-        }
-
         time += Time.deltaTime;
 
         if(time > actuaFreq)
@@ -38,11 +28,9 @@ public class animal_behaviour : MonoBehaviour
             RaycastHit hit;
             bool ray = Physics.Raycast(originPos, transform.forward, out hit, rayDist);
 
-            //RANDOM
+            //RANDOM ROTATE
             if(Random.value > 0.9f)
-            {
-                ray = true; // Random rotate
-            }
+                ray = true;
 
             //Obstacle == rotate
             if(ray)
@@ -60,8 +48,6 @@ public class animal_behaviour : MonoBehaviour
                 //Debug.DrawRay(originPos, transform.forward * rayDist, Color.white);
                 time = 0;
             }
-            
-
         }
     }
 }
